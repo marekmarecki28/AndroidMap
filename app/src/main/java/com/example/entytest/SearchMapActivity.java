@@ -66,7 +66,6 @@ public class SearchMapActivity extends FragmentActivity implements OnMapReadyCal
             ActivityCompat.requestPermissions(SearchMapActivity.this,
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                     99 );
-            System.out.println("NOT GRANTED ACCESS");
             return;
         }
         mFusedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper());
@@ -93,8 +92,17 @@ public class SearchMapActivity extends FragmentActivity implements OnMapReadyCal
                 markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
                 mCurrLocationMarker = mMap.addMarker(markerOptions);
 
+                //Adding another one location with marker
+                LatLng latLng1 = new LatLng(52.303832, 21.082640);
+                MarkerOptions markerOptions1 = new MarkerOptions();
+                markerOptions1.position(latLng1);
+                markerOptions1.title("One Position");
+                markerOptions1.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
+                mCurrLocationMarker = mMap.addMarker(markerOptions1);
+
                 //move map camera
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 11));
+
             }
         }
     };
